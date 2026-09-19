@@ -1,0 +1,11 @@
+node_modules/
+_site/
+.cache/
+
+# The un-watermarked originals stay OFF GitHub — this repo has to be public
+# for Pages to serve it. Keep src/photos/ backed up somewhere of your own;
+# only the watermarked src/images/ is committed and published.
+src/photos/
+
+.DS_Store
+*.log

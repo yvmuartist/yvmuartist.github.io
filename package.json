@@ -1,0 +1,22 @@
+{
+  "name": "yvmuartist.github.io",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Portfolio site for Yv Maciel, makeup artist.",
+  "scripts": {
+    "watermark": "node tools/watermark.mjs",
+    "share-card": "node tools/share-card.mjs",
+    "start": "eleventy --serve",
+    "build": "eleventy",
+    "clean": "rm -rf _site .cache"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.6",
+    "@11ty/eleventy-img": "^7.0.0",
+    "sharp": "^0.34.4"
+  }
+}

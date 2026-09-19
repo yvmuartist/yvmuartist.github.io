@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://yvmuartist.github.io/sitemap.xml

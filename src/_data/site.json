@@ -1,0 +1,16 @@
+{
+  "name": "Yv Maciel",
+  "fullName": "Yv Scarlett Maciel",
+  "role": "Makeup Artist",
+  "email": "ymaciel@alumni.ncsu.edu",
+  "instagram": "yvmuartist",
+  "instagramUrl": "https://www.instagram.com/yvmuartist/",
+  "url": "https://yvmuartist.github.io",
+  "description": "Beauty and editorial makeup artist. Portfolio and bookings.",
+  "shareImage": "share-card.jpg",
+  "categories": [
+    { "slug": "all", "label": "All" },
+    { "slug": "beauty", "label": "Beauty" },
+    { "slug": "editorial", "label": "Editorial" }
+  ]
+}

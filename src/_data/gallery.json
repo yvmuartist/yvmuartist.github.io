@@ -1,0 +1,44 @@
+[
+  {
+    "file": "lilac-glitter.jpg",
+    "title": "Lilac Glitter",
+    "category": "beauty",
+    "alt": "Close-up beauty look with lilac and pink glitter blended across the lid, glossy highlighted skin and a warm brick lip."
+  },
+  {
+    "file": "backstage-circle.jpg",
+    "title": "Backstage Circle",
+    "category": "editorial",
+    "alt": "Five models lying in a circle on a pile of clothing, wrapped in black plastic, with red lips and graphic liner."
+  },
+  {
+    "file": "blue-hour.jpg",
+    "title": "Blue Hour",
+    "category": "beauty",
+    "alt": "Close-up of a blue-grey smoky eye with a strong feathered brow, warm blush and a glossy nude lip."
+  },
+  {
+    "file": "banana-phone.jpg",
+    "title": "Banana Phone",
+    "category": "beauty",
+    "alt": "Playful portrait holding a banana like a telephone, with a blue smoky eye and peach blush."
+  },
+  {
+    "file": "seafoam.jpg",
+    "title": "Seafoam",
+    "category": "beauty",
+    "alt": "Close-up of an iridescent green and gold eye with fluttery lashes and dewy, glowing skin."
+  },
+  {
+    "file": "seafoam-portrait.jpg",
+    "title": "Seafoam Portrait",
+    "category": "beauty",
+    "alt": "Portrait with the head tilted, wearing an iridescent green and gold eye with sharp black liner and a glossy rose lip."
+  },
+  {
+    "file": "glitter-freckles.jpg",
+    "title": "Glitter Freckles",
+    "category": "beauty",
+    "alt": "Soft close portrait with silver glitter dotted across the cheekbones like freckles and a warm glossy lip."
+  }
+]

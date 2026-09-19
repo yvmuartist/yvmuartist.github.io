@@ -1,0 +1,261 @@
+/* ------------------------------------------------------------------
+   Yv Maciel — portfolio
+   Direction C, "The Index": fixed sidebar, staggered grid, monochrome.
+   The photographs supply all the colour; the page supplies none.
+   ------------------------------------------------------------------ */
+
+:root {
+  --paper: #F0F0EE;
+  --card: #FFFFFF;
+  --ink: #1A1A1A;
+  --ink-2: #565654;
+  --hair: #DCDCD6;
+  --ui: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --gutter: 14px;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--ui);
+  font-size: 14px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+/* ---------- layout ---------- */
+
+.shell {
+  display: grid;
+  grid-template-columns: 230px minmax(0, 1fr);
+  align-items: start;
+}
+
+.side {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+  padding: 34px 26px 26px;
+}
+
+.wordmark {
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: .11em;
+  line-height: 1.35;
+  text-transform: uppercase;
+  text-decoration: none;
+  margin: 0;
+}
+
+.wordmark small {
+  display: block;
+  font-weight: 500;
+  font-size: 9px;
+  letter-spacing: .3em;
+  color: var(--ink-2);
+  margin-top: 6px;
+}
+
+.side nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.side nav a,
+.filter button {
+  font-family: var(--ui);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: .17em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink);
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+}
+
+.filter {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.filter button {
+  color: var(--ink-2);
+  transition: color .2s ease;
+}
+
+.filter button:hover { color: var(--ink); }
+
+.filter button[aria-pressed="true"] {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.side .foot {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 10px;
+  letter-spacing: .06em;
+  color: var(--ink-2);
+}
+
+.side .foot a {
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: .17em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.main { padding: 34px 26px 60px; }
+
+/* ---------- the grid ---------- */
+
+.masonry {
+  columns: 3;
+  column-gap: var(--gutter);
+}
+
+.masonry figure {
+  break-inside: avoid;
+  margin: 0 0 var(--gutter);
+}
+
+/* The filter hides figures with the `hidden` attribute. This rule has to
+   out-rank `.masonry figure` above, or filtering silently does nothing. */
+.masonry figure[hidden] {
+  display: none;
+}
+
+.masonry picture { display: block; }
+
+.masonry img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #E2E2DE;
+}
+
+.masonry figcaption {
+  margin-top: 7px;
+  font-size: 9px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.empty {
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  padding: 30px 0;
+}
+
+/* ---------- panels ---------- */
+
+.panel {
+  max-width: 64ch;
+  padding-block: clamp(46px, 7vw, 86px);
+  border-top: 1px solid var(--hair);
+  margin-top: 40px;
+}
+
+.panel h2 {
+  font-family: var(--ui);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  margin: 0 0 22px;
+  color: var(--ink-2);
+}
+
+.panel .lede {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(19px, 2.6vw, 29px);
+  line-height: 1.35;
+  margin: 0 0 22px;
+  text-wrap: balance;
+}
+
+.panel p { margin: 0 0 15px; }
+.panel .note { color: var(--ink-2); max-width: 46ch; }
+
+.panel a.mail {
+  font-family: var(--serif);
+  font-size: clamp(17px, 2.4vw, 26px);
+  text-decoration: none;
+  border-bottom: 1px solid var(--hair);
+}
+
+.panel a.mail:hover { border-bottom-color: var(--ink); }
+
+.shell--bare { grid-template-columns: 1fr; }
+.shell--bare .panel { border-top: 0; margin-top: 0; }
+
+/* ---------- narrower ---------- */
+
+@media (max-width: 900px) {
+  .masonry { columns: 2; }
+}
+
+@media (max-width: 760px) {
+  .shell { grid-template-columns: 1fr; }
+  .side {
+    position: static;
+    height: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 16px 22px;
+    padding: 20px 16px;
+    border-bottom: 1px solid var(--hair);
+  }
+  .side nav ul { flex-direction: row; gap: 16px; }
+  .filter { flex-direction: row; flex-wrap: wrap; gap: 14px; width: 100%; }
+  .side .foot { flex-direction: row; gap: 16px; margin-top: 0; width: 100%; }
+  .main { padding: 20px 16px 48px; }
+}
+
+@media (max-width: 420px) {
+  .masonry { columns: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}

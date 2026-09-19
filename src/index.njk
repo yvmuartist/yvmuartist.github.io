@@ -1,0 +1,74 @@
+---
+layout: base.njk
+---
+<div class="shell">
+
+  <aside class="side">
+    <a class="wordmark" href="/">{{ site.name }}<small>{{ site.role }}</small></a>
+
+    {% if categories.length %}
+    <div class="filter" role="group" aria-label="Filter work by category">
+      {% for cat in categories %}
+      <button type="button" data-cat="{{ cat.slug }}" aria-pressed="{{ "true" if loop.first else "false" }}">{{ cat.label }}</button>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <nav>
+      <ul>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="foot">
+      <a href="{{ site.instagramUrl }}" rel="me noopener" target="_blank">Instagram</a>
+      <span>&copy;{{ year }} {{ site.fullName }}</span>
+    </div>
+  </aside>
+
+  <main class="main">
+    <h1 class="sr-only">{{ site.fullName }} — {{ site.role }}</h1>
+
+    <div class="masonry" id="grid">
+      {% for item in gallery %}
+      <figure data-cat="{{ item.category }}">
+        <img src="images/{{ item.file }}" alt="{{ item.alt }}">
+        <figcaption>
+          <span>{{ item.title }}</span>
+          <span>{% if item.credit %}{{ item.credit }}{% elif categories.length %}{{ item.category | capitalize }}{% endif %}</span>
+        </figcaption>
+      </figure>
+      {% endfor %}
+    </div>
+
+    <p class="empty" id="empty" hidden>Nothing in this category yet.</p>
+
+    <section class="panel" id="contact">
+      <h2>Contact</h2>
+      <p><a class="mail" href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+      <p class="note">For bookings and rates. Please include dates, location, and the kind of work.</p>
+    </section>
+  </main>
+
+</div>
+
+<script>
+(function () {
+  var buttons = document.querySelectorAll('.filter button');
+  var items = document.querySelectorAll('#grid figure');
+  var empty = document.getElementById('empty');
+  buttons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var cat = btn.dataset.cat;
+      buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b === btn)); });
+      var shown = 0;
+      items.forEach(function (fig) {
+        var match = cat === 'all' || fig.dataset.cat === cat;
+        fig.hidden = !match;
+        if (match) shown++;
+      });
+      empty.hidden = shown > 0;
+    });
+  });
+})();
+</script>
