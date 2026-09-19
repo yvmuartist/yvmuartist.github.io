@@ -27,6 +27,14 @@ jobs:
 
       - run: npm ci
 
+      # Gate: proves every file in src/images/ came out of `npm run watermark`
+      # and that gallery.json has no broken references. The un-watermarked
+      # originals live only on the local machine, so the manifest is the
+      # evidence. This runs before the build, so a mistake fails here instead
+      # of being published.
+      - name: Verify images are watermarked
+        run: npm run verify
+
       # Generated images are expensive to rebuild; keep them between runs.
       - uses: actions/cache@v4
         with:

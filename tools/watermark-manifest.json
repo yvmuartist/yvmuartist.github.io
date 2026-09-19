@@ -1,0 +1,52 @@
+{
+  "backstage-circle.jpg": {
+    "source": "41d51d8d403dab3bcb62f5b719500d1b2f9ffdd00b0addb936c628fec860d214",
+    "output": "0c4d62e21c78d3db505b6c2ab9bfeb9934f5ed0f1e3d5cb6232afee4d9733c40",
+    "passthrough": false
+  },
+  "banana-phone.jpg": {
+    "source": "9671bd48eb8b7cd8a6be30254f3787aed7342c65e247209f5899cd61fec14023",
+    "output": "261576ff6f00767ef5dc5710d9f4fedc9d69101f45ecc638cf502ab0ba03ecc7",
+    "passthrough": false
+  },
+  "blue-hour.jpg": {
+    "source": "b6df99e34f6ad9576c362cac8947740f1db5642bd8d8c94d071c26ff0c406e95",
+    "output": "35bdf3dcf814967df73bbc645a26ee7e427a9560e256aec2c26f77d3674ba7f8",
+    "passthrough": false
+  },
+  "glitter-freckles.jpg": {
+    "source": "69daa4c7329ef9fe3b00bfa375c97ee95651b37ca5b0ecec3f85e07d39aaaa87",
+    "output": "ff31f3eee3ab3b96a8c91472609655ffa48c596395175e34e6e3925f42de50e5",
+    "passthrough": false
+  },
+  "lilac-glitter.jpg": {
+    "source": "1f5340b8471da4dc7dbdf6e19d9b1769b2c2ede1da8f1ea603ceec8655d4fac4",
+    "output": "25a7fc418bceca1353b0ea387421b9a2be1f6596793e844572f8513724308201",
+    "passthrough": false
+  },
+  "runway-finale.jpg": {
+    "source": "dc8fa9398c16abf63963419f21a128aabd4302f038a10ba2ac052848a380567f",
+    "output": "4fbef26d7b5193f131b73e0fa66c735bfe707c4d7546d1956e75129c6433ff07",
+    "passthrough": true
+  },
+  "salvage-court.jpg": {
+    "source": "4fb4293636d5c21641c3000d408379553a36144c383b71918f4beffcef70b0a0",
+    "output": "83d0116d40f8239b85b9eca9266b31714d6800a19d2c7e6f405d5460d6c0cc73",
+    "passthrough": false
+  },
+  "salvage-repose.jpg": {
+    "source": "3b213a4f49248b05ed2440713c14a67bda5499c969dd325ef432d6ec1b8ec01a",
+    "output": "4ee12a36b9868fc141010e562088cd18110e87541da2014c03f77f55526c09f4",
+    "passthrough": false
+  },
+  "seafoam-portrait.jpg": {
+    "source": "a1de650a4c567239e5d8db7c8772068405e05942ccd7a5c72dbf21f8cdf22ccb",
+    "output": "7d14cb1228f26fa92cab1784c10effe6b5f23e5c1b0b0ab91ee6b253d1332fd4",
+    "passthrough": false
+  },
+  "seafoam.jpg": {
+    "source": "1503ec52b2abb12679dd981139f5c800a32d477e1d05f3f90d978ba48b7e0162",
+    "output": "e20596ee605df8fe67bc9751fa307bfc15c67a4caa05a58f1b1387d203913c4c",
+    "passthrough": false
+  }
+}

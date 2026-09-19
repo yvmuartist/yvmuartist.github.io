@@ -6,6 +6,7 @@
   "description": "Portfolio site for Yv Maciel, makeup artist.",
   "scripts": {
     "watermark": "node tools/watermark.mjs",
+    "verify": "node tools/verify-images.mjs",
     "share-card": "node tools/share-card.mjs",
     "start": "eleventy --serve",
     "build": "eleventy",
