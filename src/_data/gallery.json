@@ -1,39 +1,15 @@
 [
   {
-    "file": "backstage-circle.jpg",
-    "title": "Backstage Circle",
-    "category": "editorial",
-    "alt": "Six models in black plastic garments lying in a ring on a mound of discarded clothing, photographed from above, with smoked plum eyes and red lips."
-  },
-  {
-    "file": "lilac-glitter.jpg",
-    "title": "Lilac Glitter",
-    "category": "beauty",
-    "alt": "Close-up beauty look with lilac and pink glitter blended across the lid, glossy highlighted skin and a warm brick lip."
-  },
-  {
-    "file": "salvage-court.jpg",
-    "title": "Salvage Court",
-    "category": "editorial",
-    "alt": "Six models in garments built from black plastic sheeting, posed in tiers on a mound of discarded clothing, wearing smoked plum eyes and red lips."
-  },
-  {
     "file": "blue-hour.jpg",
     "title": "Blue Hour",
     "category": "beauty",
     "alt": "Close-up of a blue-grey smoky eye with a strong feathered brow, warm blush and a glossy nude lip."
   },
   {
-    "file": "runway-finale.jpg",
-    "title": "Runway Finale",
-    "category": "editorial",
-    "alt": "A model on the runway in a red sequinned corset and plaid skirt, arms raised overhead, against a mountain of salvaged fabric."
-  },
-  {
-    "file": "salvage-repose.jpg",
-    "title": "Salvage Repose",
-    "category": "editorial",
-    "alt": "Six models reclining together on a heap of clothing in black plastic garments, with plum smoky eyes and red lips."
+    "file": "banana-phone.jpg",
+    "title": "Banana Phone",
+    "category": "beauty",
+    "alt": "Playful portrait holding a banana like a telephone, with a blue smoky eye and peach blush."
   },
   {
     "file": "seafoam.jpg",
@@ -48,15 +24,39 @@
     "alt": "Portrait with the head tilted, wearing an iridescent green and gold eye with sharp black liner and a glossy rose lip."
   },
   {
-    "file": "banana-phone.jpg",
-    "title": "Banana Phone",
+    "file": "lilac-glitter.jpg",
+    "title": "Lilac Glitter",
     "category": "beauty",
-    "alt": "Playful portrait holding a banana like a telephone, with a blue smoky eye and peach blush."
+    "alt": "Close-up beauty look with lilac and pink glitter blended across the lid, glossy highlighted skin and a warm brick lip."
   },
   {
     "file": "glitter-freckles.jpg",
     "title": "Glitter Freckles",
     "category": "beauty",
     "alt": "Soft close portrait with silver glitter dotted across the cheekbones like freckles and a warm glossy lip."
+  },
+  {
+    "file": "runway-finale.jpg",
+    "title": "Runway Finale",
+    "category": "editorial",
+    "alt": "A model on the runway in a red sequinned corset and plaid skirt, arms raised overhead, against a mountain of salvaged fabric."
+  },
+  {
+    "file": "backstage-circle.jpg",
+    "title": "Backstage Circle",
+    "category": "editorial",
+    "alt": "Six models in black plastic garments lying in a ring on a mound of discarded clothing, photographed from above, with smoked plum eyes and red lips."
+  },
+  {
+    "file": "salvage-repose.jpg",
+    "title": "Salvage Repose",
+    "category": "editorial",
+    "alt": "Six models reclining together on a heap of clothing in black plastic garments, with plum smoky eyes and red lips."
+  },
+  {
+    "file": "salvage-court.jpg",
+    "title": "Salvage Court",
+    "category": "editorial",
+    "alt": "Six models in garments built from black plastic sheeting, posed in tiers on a mound of discarded clothing, wearing smoked plum eyes and red lips."
   }
 ]

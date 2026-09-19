@@ -2,7 +2,7 @@
 
 Portfolio site for **Yv Maciel**, makeup artist. Static site, built with [Eleventy](https://www.11ty.dev/), deployed to GitHub Pages by GitHub Actions on every push to `main`.
 
-Design: "The Index" — fixed sidebar, staggered grid, strict monochrome. The photographs supply all the colour.
+Design: "The Index" — fixed sidebar, justified rows, strict monochrome. The photographs supply all the colour.
 
 ---
 
@@ -63,6 +63,10 @@ The watermarking step runs **on your machine**, not in CI, because this reposito
 4. Commit. The Actions tab shows the build; the site updates in about a minute.
 
 **Order on the page** is the order in `gallery.json`.
+
+**Which category opens first** is `defaultCategory` in `src/_data/site.json` (currently `beauty`). Set it to `all` to show everything on arrival.
+
+**The gallery is justified**: every row fills the width at a shared height and nothing is cropped. It works in two layers — the CSS in `site.css` does it on its own using each figure's `--ar` (measured at build time by `src/_data/dimensions.js`), and a short script in `index.njk` then re-cuts the row breaks with look-ahead so no row wraps short and stretches. With JavaScript off the CSS result stands and the filter hides itself, showing all the work. Below 520px every photograph simply takes the full width.
 
 **To remove a photo**, delete its entry from `gallery.json`. (Deleting the file too is optional — an unreferenced image is simply not built.)
 

@@ -1,6 +1,7 @@
 ---
 layout: base.njk
 ---
+{% set active = site.defaultCategory or "all" %}
 <div class="shell">
 
   <aside class="side">
@@ -9,7 +10,7 @@ layout: base.njk
     {% if categories.length %}
     <div class="filter" role="group" aria-label="Filter work by category">
       {% for cat in categories %}
-      <button type="button" data-cat="{{ cat.slug }}" aria-pressed="{{ "true" if loop.first else "false" }}">{{ cat.label }}</button>
+      <button type="button" data-cat="{{ cat.slug }}" aria-pressed="{{ "true" if cat.slug == active else "false" }}">{{ cat.label }}</button>
       {% endfor %}
     </div>
     {% endif %}
@@ -29,9 +30,10 @@ layout: base.njk
   <main class="main">
     <h1 class="sr-only">{{ site.fullName }} — {{ site.role }}</h1>
 
-    <div class="masonry" id="grid">
+    <div class="gallery" id="grid">
       {% for item in gallery %}
-      <figure data-cat="{{ item.category }}">
+      {%- set dim = dimensions[item.file] -%}
+      <figure data-cat="{{ item.category }}" data-ar="{{ dim.ar if dim else 1 }}" style="--ar:{{ dim.ar if dim else 1 }}"{% if active != "all" and item.category != active %} hidden{% endif %}>
         <img src="images/{{ item.file }}" alt="{{ item.alt }}">
         <figcaption>
           <span>{{ item.title }}</span>
@@ -52,11 +54,85 @@ layout: base.njk
 
 </div>
 
+{# Without JavaScript the filter can't be operated, so show everything rather
+   than stranding the editorial work behind a button that does nothing. #}
+<noscript>
+  <style>
+    .gallery figure[hidden] { display: block !important; }
+    .filter { display: none; }
+  </style>
+</noscript>
+
 <script>
 (function () {
+  var grid = document.getElementById('grid');
   var buttons = document.querySelectorAll('.filter button');
-  var items = document.querySelectorAll('#grid figure');
+  var items = [].slice.call(grid.querySelectorAll('figure'));
   var empty = document.getElementById('empty');
+  var GAP = 14;
+
+  // ---- justification ----------------------------------------------------
+  // The CSS alone produces justified rows, but flex wraps on flex-basis and
+  // only then stretches, with no look-ahead: a row that wraps one image short
+  // gets stretched far taller than its neighbours. This pass decides each row
+  // break by whichever choice lands closer to the target height, which keeps
+  // the rows even. Without JavaScript the CSS result still stands.
+
+  var ar = function (fig) { return parseFloat(fig.dataset.ar) || 1; };
+
+  function reset() {
+    grid.classList.remove('is-justified');
+    items.forEach(function (f) {
+      f.style.width = '';
+      f.querySelector('img').style.height = '';
+    });
+  }
+
+  function justify() {
+    var width = grid.clientWidth;
+    // Below this width the CSS gives every photograph the full column.
+    if (!width || window.matchMedia('(max-width: 520px)').matches) { reset(); return; }
+
+    var target = Math.max(240, Math.min(420, window.innerWidth * 0.26));
+    var visible = items.filter(function (f) { return !f.hidden; });
+    if (!visible.length) { reset(); return; }
+
+    grid.classList.add('is-justified');
+
+    var row = [], sum = 0;
+
+    function place(stretch) {
+      var gaps = GAP * (row.length - 1);
+      var h = stretch ? (width - gaps) / sum : target;
+      var used = 0;
+      row.forEach(function (f, i) {
+        var w = (stretch && i === row.length - 1)
+          ? width - gaps - used
+          : Math.floor(h * ar(f));
+        used += w;
+        f.style.width = w + 'px';
+        f.querySelector('img').style.height = Math.round(h) + 'px';
+      });
+      row = []; sum = 0;
+    }
+
+    visible.forEach(function (f) {
+      var a = ar(f);
+      if (row.length && (sum + a) * target + GAP * row.length > width) {
+        var without = (width - GAP * (row.length - 1)) / sum;
+        var withIt = (width - GAP * row.length) / (sum + a);
+        if (Math.abs(withIt - target) < Math.abs(without - target)) {
+          row.push(f); sum += a; place(true); return;
+        }
+        place(true);
+      }
+      row.push(f); sum += a;
+    });
+
+    if (row.length) place(false);
+  }
+
+  // ---- filtering --------------------------------------------------------
   buttons.forEach(function (btn) {
     btn.addEventListener('click', function () {
       var cat = btn.dataset.cat;
@@ -68,7 +144,16 @@ layout: base.njk
         if (match) shown++;
       });
       empty.hidden = shown > 0;
+      justify();
     });
   });
+
+  var timer;
+  window.addEventListener('resize', function () {
+    clearTimeout(timer);
+    timer = setTimeout(justify, 120);
+  });
+
+  justify();
 })();
 </script>

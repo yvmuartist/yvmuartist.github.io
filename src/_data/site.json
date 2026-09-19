@@ -8,6 +8,7 @@
   "url": "https://yvmuartist.github.io",
   "description": "Beauty and editorial makeup artist. Portfolio and bookings.",
   "shareImage": "share-card.jpg",
+  "defaultCategory": "beauty",
   "categories": [
     { "slug": "all", "label": "All" },
     { "slug": "beauty", "label": "Beauty" },

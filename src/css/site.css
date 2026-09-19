@@ -139,34 +139,64 @@ a { color: inherit; }
 
 .main { padding: 34px 26px 60px; }
 
-/* ---------- the grid ---------- */
+/* ---------- the gallery: justified rows ----------
 
-.masonry {
-  columns: 3;
-  column-gap: var(--gutter);
+   Every row is the same height and fills the width exactly, and nothing is
+   cropped. No JavaScript: each figure carries its aspect ratio as --ar
+   (measured at build time in src/_data/dimensions.js), and because both
+   flex-basis and flex-grow are proportional to --ar, every item in a row
+   resolves to a width proportional to its ratio — which is the same thing as
+   a shared height. Rows re-form on resize with no script running. */
+
+.gallery {
+  /* Tied to the viewport, not fixed: it keeps roughly the same number of
+     photographs per row at any width, which is what stops one row from
+     wrapping short and stretching its images far taller than the rest. */
+  --row-height: clamp(240px, 26vw, 420px);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gutter);
+  align-items: flex-start;
 }
 
-.masonry figure {
-  break-inside: avoid;
-  margin: 0 0 var(--gutter);
+.gallery figure {
+  margin: 0;
+  min-width: 0;
+  flex-grow: var(--ar);
+  flex-basis: calc(var(--ar) * var(--row-height));
 }
+
+/* The last row has slack in it. Without something to absorb the slack, flex
+   would stretch the final row's images far larger than the rest. */
+.gallery::after {
+  content: "";
+  flex-grow: 1000000;
+  flex-basis: 0;
+}
+
+/* When the JavaScript pass runs it sets exact widths and heights, so those
+   figures must stop flexing. Without JS this class is never added and the
+   flex rules above remain in charge. */
+.gallery.is-justified figure { flex: 0 0 auto; }
+.gallery.is-justified img { object-fit: cover; }
+.gallery.is-justified::after { display: none; }
 
 /* The filter hides figures with the `hidden` attribute. This rule has to
-   out-rank `.masonry figure` above, or filtering silently does nothing. */
-.masonry figure[hidden] {
+   out-rank `.gallery figure` above, or filtering silently does nothing. */
+.gallery figure[hidden] {
   display: none;
 }
 
-.masonry picture { display: block; }
+.gallery picture { display: block; }
 
-.masonry img {
+.gallery img {
   display: block;
   width: 100%;
   height: auto;
   background: #E2E2DE;
 }
 
-.masonry figcaption {
+.gallery figcaption {
   margin-top: 7px;
   font-size: 9px;
   letter-spacing: .18em;
@@ -175,7 +205,17 @@ a { color: inherit; }
   display: flex;
   justify-content: space-between;
   gap: 10px;
+  flex-wrap: nowrap;
 }
+
+.gallery figcaption span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+.gallery figcaption span:last-child { flex: 0 0 auto; }
 
 .empty {
   font-size: 11px;
@@ -231,7 +271,7 @@ a { color: inherit; }
 /* ---------- narrower ---------- */
 
 @media (max-width: 900px) {
-  .masonry { columns: 2; }
+  .gallery { --row-height: clamp(200px, 30vw, 280px); }
 }
 
 @media (max-width: 760px) {
@@ -252,8 +292,11 @@ a { color: inherit; }
   .main { padding: 20px 16px 48px; }
 }
 
-@media (max-width: 420px) {
-  .masonry { columns: 1; }
+/* On a phone a justified row would shrink each photograph to a thumbnail,
+   so below this width every image simply takes the full width instead. */
+@media (max-width: 520px) {
+  .gallery figure { flex: 1 1 100%; }
+  .gallery::after { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
