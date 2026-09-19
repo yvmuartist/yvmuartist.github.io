@@ -49,6 +49,11 @@ layout: base.njk
       <p><a class="mail" href="mailto:{{ site.email }}">{{ site.email }}</a></p>
       <p class="note">For bookings and rates. Please include dates, location, and the kind of work.</p>
     </section>
+
+    {# On a phone the sidebar becomes a header, which would hoist the copyright
+       above the photographs. It is repeated here and each copy is shown at
+       only one breakpoint. #}
+    <footer class="page-foot">&copy;{{ year }} {{ site.fullName }}</footer>
   </main>
 
 </div>

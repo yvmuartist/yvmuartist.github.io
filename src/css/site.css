@@ -217,6 +217,8 @@ a { color: inherit; }
 
 .gallery figcaption span:last-child { flex: 0 0 auto; }
 
+.page-foot { display: none; }
+
 .empty {
   font-size: 11px;
   letter-spacing: .18em;
@@ -276,20 +278,34 @@ a { color: inherit; }
 
 @media (max-width: 760px) {
   .shell { grid-template-columns: 1fr; }
+
+  /* The header is chrome standing between a visitor and the work, so it gets
+     two tight rows: the name, then the filters and Contact side by side. */
   .side {
     position: static;
     height: auto;
     flex-direction: row;
     flex-wrap: wrap;
     align-items: baseline;
-    gap: 16px 22px;
-    padding: 20px 16px;
+    gap: 12px 20px;
+    padding: 18px 16px 14px;
     border-bottom: 1px solid var(--hair);
   }
+  .wordmark { width: 100%; }
+  .wordmark small { margin-top: 4px; }
   .side nav ul { flex-direction: row; gap: 16px; }
-  .filter { flex-direction: row; flex-wrap: wrap; gap: 14px; width: 100%; }
-  .side .foot { flex-direction: row; gap: 16px; margin-top: 0; width: 100%; }
-  .main { padding: 20px 16px 48px; }
+  .filter { flex-direction: row; flex-wrap: wrap; gap: 16px; }
+
+  .side .foot { display: none; }
+  .page-foot {
+    display: block;
+    padding-top: 6px;
+    font-size: 10px;
+    letter-spacing: .06em;
+    color: var(--ink-2);
+  }
+
+  .main { padding: 16px 16px 40px; }
 }
 
 /* On a phone a justified row would shrink each photograph to a thumbnail,
