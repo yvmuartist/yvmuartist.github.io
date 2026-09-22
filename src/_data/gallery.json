@@ -12,6 +12,12 @@
     "alt": "Playful portrait holding a banana like a telephone, with a blue smoky eye and peach blush."
   },
   {
+    "file": "blue-symmetry.jpg",
+    "title": "Blue Symmetry",
+    "category": "beauty",
+    "alt": "Straight-on full face with a blue-grey smoky eye, coral blush swept high on the cheek, a warm brown lip and pearl earrings."
+  },
+  {
     "file": "seafoam.jpg",
     "title": "Seafoam",
     "category": "beauty",
@@ -22,12 +28,6 @@
     "title": "Seafoam Portrait",
     "category": "beauty",
     "alt": "Portrait with the head tilted, wearing an iridescent green and gold eye with sharp black liner and a glossy rose lip."
-  },
-  {
-    "file": "lilac-glitter.jpg",
-    "title": "Lilac Glitter",
-    "category": "beauty",
-    "alt": "Close-up beauty look with lilac and pink glitter blended across the lid, glossy highlighted skin and a warm brick lip."
   },
   {
     "file": "rose-quartz.jpg",
@@ -48,10 +48,10 @@
     "alt": "Pink shimmer lids and soft rose blush, eyes open and looking away, with a pearl brow stud and a dewy highlight across the cheek."
   },
   {
-    "file": "blue-symmetry.jpg",
-    "title": "Blue Symmetry",
+    "file": "lilac-glitter.jpg",
+    "title": "Lilac Glitter",
     "category": "beauty",
-    "alt": "Straight-on full face with a blue-grey smoky eye, coral blush swept high on the cheek, a warm brown lip and pearl earrings."
+    "alt": "Close-up beauty look with lilac and pink glitter blended across the lid, glossy highlighted skin and a warm brick lip."
   },
   {
     "file": "runway-finale.jpg",
