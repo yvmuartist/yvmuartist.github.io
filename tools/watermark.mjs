@@ -99,12 +99,22 @@ for (const name of photos) {
 
   // .rotate() with no argument applies any EXIF orientation and bakes it in,
   // so a phone photo never ends up sideways once the metadata is dropped.
-  const base = sharp(join(SRC, name)).rotate();
-  const { width, height } = await base.metadata();
+  //
+  // The rotation has to be resolved to a real buffer first. `.rotate().metadata()`
+  // reports the dimensions as *stored*, not as they will be after rotating, so
+  // building the overlay from it sizes the mark 90 degrees out on any photo with
+  // an orientation flag — sharp then refuses to composite. Resolving the buffer
+  // gives the true output size.
+  const { data, info } = await sharp(join(SRC, name))
+    .rotate()
+    .toBuffer({ resolveWithObject: true });
+
+  const { width, height } = info;
+  const rotated = sharp(data);
 
   await (passthrough
-    ? base
-    : base.composite([{ input: overlay(width, height), top: 0, left: 0 }])
+    ? rotated
+    : rotated.composite([{ input: overlay(width, height), top: 0, left: 0 }])
   )
     .jpeg({ quality: 94, mozjpeg: true })
     .toFile(outPath);
