@@ -217,6 +217,122 @@ a { color: inherit; }
 
 .gallery figcaption span:last-child { flex: 0 0 auto; }
 
+.gallery.is-interactive figure { cursor: zoom-in; }
+.gallery.is-interactive figure:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+/* ---------- lightbox ----------
+   Deliberately dark, unlike the rest of the site: a neutral surround is how
+   you judge colour on a face, and it is what every gallery does. */
+
+.lightbox {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  background: rgba(14, 14, 14, .97);
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  opacity: 0;
+  transition: opacity .18s ease;
+}
+
+.lightbox.is-open { opacity: 1; }
+
+/* Must out-rank `.lightbox { display: flex }` above — same specificity as the
+   browser's own [hidden] rule but declared later, so without this the closed
+   lightbox stays laid out, invisible, swallowing every click on the page. */
+.lightbox[hidden] { display: none; }
+
+.lb-top { display: flex; justify-content: flex-end; padding: 6px 6px 0; }
+
+.lb-btn {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background: none;
+  color: rgba(255, 255, 255, .72);
+  font-family: var(--ui);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  transition: color .15s ease;
+}
+
+.lb-btn:hover { color: #fff; }
+.lb-btn:focus-visible { outline: 2px solid rgba(255, 255, 255, .8); outline-offset: -4px; }
+
+.lb-stage {
+  flex: 1;
+  min-height: 0;
+  margin: 0;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  /* pan-y keeps the swipe handlers working; pinch-zoom lets a phone magnify
+     the photograph, which is the only way to see more detail than the grid
+     already shows at full width. */
+  touch-action: pan-y pinch-zoom;
+}
+
+.lb-stage img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.lb-side { display: none; }
+
+.lb-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 4px 16px 10px;
+  color: rgba(255, 255, 255, .62);
+  font-size: 9.5px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.lb-caption { display: flex; gap: 14px; min-width: 0; }
+.lb-title { color: rgba(255, 255, 255, .92); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lb-meta { flex: 0 0 auto; }
+.lb-nav { display: flex; align-items: center; gap: 2px; flex: 0 0 auto; }
+.lb-count { font-variant-numeric: tabular-nums; padding: 0 4px; }
+
+/* Desktop gets arrows beside the photograph as well; a phone gets a swipe. */
+@media (min-width: 761px) {
+  .lb-side {
+    display: inline-flex;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 56px;
+    height: 56px;
+    font-size: 30px;
+  }
+  .lb-prev { left: 4px; }
+  .lb-next { right: 4px; }
+  .lb-stage { padding: 0 72px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lightbox { transition: none; }
+}
+
 .page-foot { display: none; }
 
 .empty {
